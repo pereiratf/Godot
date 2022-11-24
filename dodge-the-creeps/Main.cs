@@ -15,6 +15,9 @@ public class Main : Node {
     }
 
     public void GameOver() {
+        GetNode<AudioStreamPlayer>("Music").Stop();
+        GetNode<AudioStreamPlayer>("DeathSound").Play();
+
         GetNode<Timer>("MobTimer").Stop();
         GetNode<Timer>("ScoreTimer").Stop();
 
@@ -23,6 +26,7 @@ public class Main : Node {
     }
 
     public void NewGame() {
+        GetNode<AudioStreamPlayer>("Music").Play();
         //Para limpar os mobs antes de um novo jogo
         GetTree().CallGroup("mobs", "queue_free");
         //Código adicionado após a conexão com o HUD
